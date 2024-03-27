@@ -1,0 +1,9 @@
+<%- include('../partials/header') %>
+    <h2><%= player.name %></h2>
+    <!-- <h3><%= player.player %></h3> -->
+    <% player.skills.forEach(function(skill) { %>
+        <h3><%= skill.skill %> level: <%= skill.level %></h3>
+        <% })  %>
+        <a href="/players/<%= player.id %>/edit">Edit</a>
+
+    <%- include('../partials/footer') %>

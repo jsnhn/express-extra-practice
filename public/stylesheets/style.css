@@ -1,0 +1,63 @@
+
+@import url('https://fonts.cdnfonts.com/css/halo');
+
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('https://www.destructoid.com/wp-content/uploads/2020/12/589937-Halo-2.jpg?fit=1920%2C1080');
+}
+
+a {
+  color: white;
+}
+
+footer {
+  margin-top: 50%;
+  margin-left: 90%;
+  color: white;
+}
+
+h1 {
+  animation: fadeIn 5s;
+  font-family: 'Halo', sans-serif;
+  font-family: 'Halo Outline', sans-serif;
+  font-size: 47px;
+  color: white;
+}
+
+h2 {
+  animation: fadeIn 5s;
+  font-family: 'Halo', sans-serif;
+  font-family: 'Halo Outline', sans-serif;
+  font-size: 40px;
+  color: white;
+}
+
+h3 {
+  animation: fadeIn 5s;
+  color: white;
+}
+
+ul {
+  animation: fadeIn 5s;
+  font-size: 18px;
+}
+
+.delete-form {
+  display: inline-block;
+  margin-right: 10px;
+}
+	
+.delete-form button {
+  color: white;
+}
+	
+li {
+  list-style: none;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+<body>
+    <h1>View Player Stats <%= time %></h1>
+    <ul>
+      <% players.forEach(function(player) { %>
+        <li>
+          
+          <a href="/players/<%= player.id %>">
+            <%= player.name %>
+          </a>
+        </li>
+      <% }); %>
+    </ul>
+    <a href="/players/new">Add a new player</a>
+    <%- include('../partials/footer') %>

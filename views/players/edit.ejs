@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+   
+<h3><%= title %></h3>
+
+<form action="/players/<%= player.id %>?_method=PUT" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= player.name %>">
+    
+    <h4>Skills</h4>
+    <% player.skills.forEach((skill, index) => { %>
+        <div>
+            <label for="skill">Skill Name</label>
+            <input type="text" name="skills[<%= index %>][skill]" value="<%= skill.skill %>">
+            
+            <label for="level">Skill Level</label>
+            <input type="number" name="skills[<%= index %>][level]" value="<%= skill.level %>">
+        </div>
+    <% }); %>
+    
+    <button type="submit">Save</button>
+</form>
+
+<%- include('../partials/footer') %>
