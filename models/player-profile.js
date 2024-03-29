@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const playerSchema = new Schema({
+const playerProfileSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -32,7 +32,7 @@ const playerSchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Player', playerSchema)
+module.exports = mongoose.model('PlayerProfile', playerProfileSchema)
 
 
 

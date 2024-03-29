@@ -2,10 +2,10 @@
 <body>
     <h1>View Player Stats <%= time %></h1>
     <ul>
-      <% players.forEach(function(player) { %>
+      <% playerProfiles.forEach(function(player) { %>
         <li>
           
-          <a href="/players/<%= player.id %>">
+          <a href="/player-profiles/<%= player.id %>">
             <%= player.name %>
           </a>
         </li>
