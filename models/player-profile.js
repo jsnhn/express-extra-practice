@@ -2,34 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const playerProfileSchema = new Schema({
-    name: {
+    gamertag: {
         type: String,
-        required: true
+        required: true,
     },
-    gamerTag: String,
-    age: {
+    age:{
         type: Number,
         min: 21,
+        default: 33
     },
-    skills: {
-        warthogHandling: {
-            type: Number,
-            min: 1,
-            max: 10,
-        },
-        shootinAccuracy: {
-            type: Number,
-            min: 1,
-            max: 10,
-        },
-        loveFactor: {
-            type: Number,
-            min: 1,
-            max: 10,
-        },
-    }
+    // skills: [playerSkillsSchema]
 }, {
-    timestamps: true
+   timestamps: true 
 });
 
 module.exports = mongoose.model('PlayerProfile', playerProfileSchema)
