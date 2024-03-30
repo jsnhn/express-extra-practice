@@ -2,9 +2,14 @@
    
 <h3><%= title %></h3>
 
-<form action="/player-profiles" method="POST" autocomplete="off">
-    <input type="text" name="name">
-    <button type="submit">Save Player</button>
+<form action="/player-profiles" method="POST" autocomplete="off" class="new-form">
+    <label> GamerTag:
+        <input type="text" name="gamertag">
+    </label>
+    <label> Age:
+        <input type="number" name="age">
+    </label>
+    <button class="new-button" type="submit">Save Player</button>
 </form>
 
 <%- include('../partials/footer') %>

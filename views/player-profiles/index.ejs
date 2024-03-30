@@ -1,12 +1,11 @@
 <%- include('../partials/header') %>
 <body>
-    <h1>View Player Stats <%= time %></h1>
+    <h1>All Players</h1>
     <ul>
       <% playerProfiles.forEach(function(player) { %>
         <li>
-          
           <a href="/player-profiles/<%= player.id %>">
-            <%= player.name %>
+            <%= player.gamertag %>
           </a>
         </li>
       <% }); %>

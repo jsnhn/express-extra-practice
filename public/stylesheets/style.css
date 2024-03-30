@@ -35,6 +35,7 @@ h2 {
 }
 
 h3 {
+  font-size: 30px;
   animation: fadeIn 5s;
   color: white;
 }
@@ -42,6 +43,18 @@ h3 {
 ul {
   animation: fadeIn 5s;
   font-size: 18px;
+}
+
+.new-form  {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+}
+
+.new-button {
+  margin-top: 1%;
+  width: 6%;
 }
 
 .delete-form {

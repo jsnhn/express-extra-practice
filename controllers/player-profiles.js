@@ -46,7 +46,7 @@ function newPlayer(req, res) {
 
 async function create(req, res) {
     try {
-        const playerProfile = await PlayerProfile.create(req.body)
+        const playerProfile = await PlayerProfiles.create(req.body)
         res.redirect(`/player-profiles/${playerProfile._id}`)
     } catch(err) {
         console.log(err)
