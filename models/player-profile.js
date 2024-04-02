@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+
+const playerSkillSchema = new Schema ({
+   playerSkill: {
+        type: Schema.Types.ObjectId,
+        ref: 'Skill',
+    },
+    level: {
+        type: Number,
+        min: 1,
+        max: 10,
+    },       
+}, {
+    timestamps: true
+})
+
 const playerProfileSchema = new Schema({
     gamertag: {
         type: String,
@@ -11,7 +26,7 @@ const playerProfileSchema = new Schema({
         min: 21,
         default: 33
     },
-    // skills: [playerSkillsSchema]
+    skills: [playerSkillSchema]
 }, {
    timestamps: true 
 });
