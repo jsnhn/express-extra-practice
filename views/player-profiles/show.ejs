@@ -1,4 +1,11 @@
 <%- include('../partials/header') %>
     <h2><%= playerProfile.gamertag %></h2>
     <h4> Age: <%= playerProfile.age %></h4>
-    <%- include('../partials/footer') %>
+
+    <div>Skills:</div>
+<ul>
+    <% playerProfile.skills.forEach(skill => { %>
+        <li><%= skill.playerSkill.name %> (Level <%= skill.level %>)</li>
+    <% }); %>
+</ul>
+<%- include('../partials/footer') %>

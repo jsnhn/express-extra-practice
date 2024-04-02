@@ -3,14 +3,17 @@ const Schema = mongoose.Schema
 
 
 const playerSkillSchema = new Schema ({
-   playerSkill: {
+   playerSkill: 
+    {
         type: Schema.Types.ObjectId,
         ref: 'Skill',
+        required: true,
     },
     level: {
         type: Number,
         min: 1,
         max: 10,
+        default: 5,
     },       
 }, {
     timestamps: true

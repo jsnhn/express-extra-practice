@@ -1,7 +1,7 @@
 require('dotenv').config();
 require('./config/database');
 
-const PlayerProfile = require('./models/player-profile');
+const PlayerProfile = require('./models/player-profile')
 const Skill = require('./models/skill');
 
 const data = require('./data');
@@ -19,6 +19,19 @@ const data = require('./data');
         Skill.create(data.skills)
     ])
 
+    results = await Promise.all([
+        PlayerProfile.findOne({gamertag: /APEXxB1FF/}),
+        Skill.findOne({name: /Warthog /})
+    ]);
+
+    const [APEXxB1FF, Warthog] = results
+    console.log('Wart: ', Warthog)
+    APEXxB1FF.skills.push({playerSkill: Warthog._id})
+
+
+    await Promise.all([
+        APEXxB1FF.save()
+    ])
 
     process.exit();
 })();

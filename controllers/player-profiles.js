@@ -1,5 +1,6 @@
 
-const PlayerProfiles = require('../models/player-profile')
+const PlayerProfile = require('../models/player-profile')
+const Skill = require('../models/skill')
 
 module.exports = {
     index,
@@ -14,7 +15,7 @@ module.exports = {
 
 async function index(req, res) {
     try {
-        const playerProfiles = await PlayerProfiles.find({});
+        const playerProfiles = await PlayerProfile.find({});
         res.render('player-profiles/index', {
             title: 'All Players',
             playerProfiles,
@@ -27,11 +28,12 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        const playerProfile = await PlayerProfiles.findById(req.params.id);
+        const playerProfile = await PlayerProfile.findById(req.params.id).populate('skills.playerSkill');
+        console.log('Player Profile:', playerProfile);
         res.render('player-profiles/show', {
             title: 'Player Details',
             playerProfile,
-        })
+        });
     } catch(err) {
         console.log(err)
         res.redirect('/player-profiles')
@@ -46,7 +48,7 @@ function newPlayer(req, res) {
 
 async function create(req, res) {
     try {
-        const playerProfile = await PlayerProfiles.create(req.body)
+        const playerProfile = await PlayerProfile.create(req.body)
         res.redirect(`/player-profiles/${playerProfile._id}`)
     } catch(err) {
         console.log(err)
@@ -58,7 +60,7 @@ async function create(req, res) {
 }
 
 // function create(req, res) {
-//     PlayerProfiles.create(req.body);
+//     PlayerProfile.create(req.body);
 //     res.redirect('/players');
 // }
 
