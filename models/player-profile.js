@@ -22,6 +22,7 @@ const playerSkillSchema = new Schema ({
 const playerProfileSchema = new Schema({
     gamertag: {
         type: String,
+        match: /^APEXx/,
         required: true,
     },
     age:{
