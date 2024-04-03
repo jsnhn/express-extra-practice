@@ -1,37 +1,40 @@
 <%- include('../partials/header') %>
     <h2><%= playerProfile.gamertag %></h2>
     <h4> Age: <%= playerProfile.age %></h4>
-
-    <div>Skills:</div>
-<ul>
-    <%- playerProfile.skills.map(skill => 
-      `<li>${skill.type.name} <small>${skill.level}</small></li>`
-    ).join('') %>
-</ul>
-<%- include('../partials/footer') %>
-
-<form action="/player-profiles/<%= playerProfile._id %>/skills" method="POST">
-    <select name="skillId">
-        <%- skills.map(skill =>
-            `<option value="${skill._id}">${skill.name}</option>`
+    
+    <div class="skills-header">Skills:
+        <ul>
+            <%- playerProfile.skills.map(skill => 
+             `<li>${skill.type.name} <small>${skill.level}</small></li>`
         ).join('') %>
-    </select>
-    <label>Level:
-        <select name="level">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-    </label>
-    <button type="submit">Add a Skill</button>
-</form>
+        </ul>
+    </div>
+    <form class="skill-form" action="/player-profiles/<%= playerProfile._id %>/skills" method="POST">
+        <label>Skill: 
+            <select name="type">
+                <%- skills.map(skill =>
+                `<option value="${skill._id}">${skill.name}</option>`
+                ).join('') %>
+            </select>
+        </label>
+        <label>Level:
+            <select name="level">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </label>
+        <button type="submit">Add a Skill</button>
+    </form>
+    
+<%- include('../partials/footer') %>
 
 
 

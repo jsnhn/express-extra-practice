@@ -29,10 +29,10 @@ async function index(req, res) {
 async function show(req, res) {
     try {
         const playerProfile = await PlayerProfile.findById(req.params.id).populate('skills.type');
-
-        const skills = await Skill.find({ _id: { $nin: playerProfile.skills.map(skill => skill.type) } }).sort('name');
+        // console.log(playerProfile.skills.map(skill => skill.type._id))
+        const skills = await Skill.find({ _id: { $nin: playerProfile.skills.map(skill => skill.type._id) } }).sort('sortOrder');
         // getting just the type values
-        console.log('what is this: ', skills);
+        // console.log('what is this: ', skills);
         res.render('player-profiles/show', {
             title: 'Player Details',
             playerProfile,

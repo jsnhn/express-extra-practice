@@ -60,7 +60,7 @@ ul {
 
 .new-button {
   margin-top: 1%;
-  width: 6%;
+  width: 8%;
 }
 
 .delete-form {
@@ -74,6 +74,24 @@ ul {
 	
 li {
   list-style: none;
+}
+
+label {
+  color: white;
+}
+
+.skills-header {
+  animation: fadeIn 5s;
+  margin-top: 1%;
+  color: white;
+}
+
+.skill-form {
+  animation: fadeIn 5s;
+}
+
+button {
+  animation: fadeIn 5s;
 }
 
 @keyframes fadeIn {

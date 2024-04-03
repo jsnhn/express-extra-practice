@@ -9,14 +9,3 @@ exports.skills = [
         name: 'Love Factor', sortOrder:20
     }
 ];
-
-exports.playerProfiles = [
-    {
-        gamertag: 'APEXxB1FF',
-        age: 33,
-    },
-    {
-        gamertag: 'APEXxSM0K3',
-        age: 33,
-    },
-]
