@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 
 const playerSkillSchema = new Schema ({
-   playerSkill: 
+   type: 
     {
         type: Schema.Types.ObjectId,
         ref: 'Skill',

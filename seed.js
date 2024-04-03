@@ -19,19 +19,19 @@ const data = require('./data');
         Skill.create(data.skills)
     ])
 
-    results = await Promise.all([
-        PlayerProfile.findOne({gamertag: /APEXxB1FF/}),
-        Skill.findOne({name: /Warthog /})
-    ]);
+    // results = await Promise.all([
+    //     PlayerProfile.findOne({gamertag: /APEXxB1FF/}),
+    //     Skill.findOne({name: /Warthog /})
+    // ]);
 
-    const [APEXxB1FF, Warthog] = results
-    console.log('Wart: ', Warthog)
-    APEXxB1FF.skills.push({playerSkill: Warthog._id})
+    // const [APEXxB1FF, Warthog] = results
+    // console.log('Wart: ', Warthog)
+    // APEXxB1FF.skills.push({type: Warthog._id})
 
 
-    await Promise.all([
-        APEXxB1FF.save()
-    ])
+    // await Promise.all([
+    //     APEXxB1FF.save()
+    // ])
 
     process.exit();
 })();

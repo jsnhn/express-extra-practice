@@ -28,11 +28,14 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        const playerProfile = await PlayerProfile.findById(req.params.id).populate('skills.playerSkill');
-        console.log('Player Profile:', playerProfile);
+        const playerProfile = await PlayerProfile.findById(req.params.id).populate('skills.type');
+
+        const skills = await Skill.find({ _id: { $nin: playerProfile.skills} }).sort('name')
+        // console.log(playerProfile);
         res.render('player-profiles/show', {
             title: 'Player Details',
             playerProfile,
+            skills,
         });
     } catch(err) {
         console.log(err)

@@ -10,7 +10,7 @@ require('./config/database')
 var indexRouter = require('./routes/index');
 var playerProfilesRouter = require('./routes/player-profiles');
 // const playerSkillsRouter = require('./routes/playerSkills');
-// const skillsRouter = require('./routes/skills')
+const skillsRouter = require('./routes/skills')
 const methodOverride = require('method-override')
 
 
@@ -36,7 +36,7 @@ app.use(function(req, res, next){
 app.use('/', indexRouter);
 app.use('/player-profiles', playerProfilesRouter);
 // app.use('/', playerSkillsRouter);
-// app.use('/', skillsRouter);
+app.use('/', skillsRouter);
 
 
 // catch 404 and forward to error handler
