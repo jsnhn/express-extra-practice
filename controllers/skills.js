@@ -8,7 +8,8 @@ module.exports = {
 async function addToSkill(req, res) {
     try {
         const playerProfile = await PlayerProfile.findById(req.params.id);
-        playerProfile.skills.push({type: req.body.skillId});
+        const level = parseInt(req.body.level)
+        playerProfile.skills.push({type: req.body.skillId, level: level});
         console.log('type: ', req.body)
         await playerProfile.save()
     } catch(err) {
