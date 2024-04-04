@@ -63,6 +63,8 @@ async function create(req, res) {
     }
 }
 
+
+
 // function create(req, res) {
 //     PlayerProfile.create(req.body);
 //     res.redirect('/players');
