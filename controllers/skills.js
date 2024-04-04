@@ -20,15 +20,12 @@ async function addToSkill(req, res) {
 
 async function deleteSkill(req, res) {
     try {
-        console.log('Skill ID:', req.params.id);
-
+        // console.log('Skill ID:', req.params.id);
         const playerProfile = await PlayerProfile.findOne({ 'skills._id': req.params.id });
-        console.log('pp: ', playerProfile)
-
+        // console.log('pp: ', playerProfile)
         playerProfile.skills = playerProfile.skills.filter(skill => skill._id.toString() !== req.params.id);
         await playerProfile.save();
-
-        res.redirect('/player-profiles');
+        res.redirect(`/player-profiles/${playerProfile._id}`);
     } catch (err) {
         console.error(err);
         res.redirect('/player-profiles');
