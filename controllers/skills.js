@@ -25,6 +25,8 @@ async function deleteSkill(req, res) {
         const playerProfile = await PlayerProfile.findOne({ 'skills._id': req.params.id });
         // console.log('pp: ', playerProfile)
         playerProfile.skills = playerProfile.skills.filter(skill => skill._id.toString() !== req.params.id);
+        // filter iterates over each element and returns a new array containing only true elements
+        //req.params.id is usually a string. seeing if skill_.id matches with the req.params.id (id is parameeter in the URL)
         await playerProfile.save();
         res.redirect(`/player-profiles/${playerProfile._id}`);
     } catch (err) {
@@ -37,13 +39,14 @@ async function show(req, res) {
     try {
         const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id }).sort({ 'skills.level': -1 });
         console.log('pp: ', playerProfiles)
-        playerProfiles.forEach(profile => {
-            profile.skills = profile.skills.filter(skill => skill.type.toString() === req.params.id);
-        });
+
+        const skill = await Skill.findById(req.params.id)
+       
 
         res.render('skills/show', {
             title: 'Skill Details',
             playerProfiles,
+            skill,
         });
     } catch (err) {
         console.error(err);
