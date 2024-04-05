@@ -1,10 +1,10 @@
 <%- include('../partials/header') %>
-    <h2><%= playerProfile.gamertag %></h2>
-    <h4> Age: <%= playerProfile.age %></h4>
+    <h2><%= playerProfiles.gamertag %></h2>
+    <h4> Age: <%= playerProfiles.age %></h4>
     
     <div class="skills-header">Skills:
         <ul>
-            <% playerProfile.skills.forEach(skill => { %>
+            <% playerProfiles.skills.forEach(skill => { %>
                 <li>
                     <a href="/skills/<%= skill.type.id %>">
                     <%= skill.type.name %> <small><%= skill.level %></small>   
@@ -16,7 +16,7 @@
             <% }); %>
         </ul>
     </div>
-    <form class="skill-form" action="/player-profiles/<%= playerProfile._id %>/skills" method="POST">
+    <form class="skill-form" action="/player-profiles/<%= playerProfiles._id %>/skills" method="POST">
         <label>Skill: 
             <select name="type">
                 <%- skills.map(skill =>
@@ -49,7 +49,7 @@
 
 
 
-<!-- <form action="/player-profiles/<%= playerProfile._id %>/skills" method="POST">
+<!-- <form action="/player-profiles/<%= playerProfiles._id %>/skills" method="POST">
     <select name="skillId">
         <% skills.forEach(skill => { %>
             <option value="<%= skill._id %>"><%= skill.name %></option>

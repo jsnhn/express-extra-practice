@@ -4,6 +4,7 @@ const PlayerProfile = require('../models/player-profile')
 module.exports = {
     addToSkill,
     delete: deleteSkill,
+    show,
 }
 
 async function addToSkill(req, res) {
@@ -31,5 +32,36 @@ async function deleteSkill(req, res) {
         res.redirect('/player-profiles');
     }
 }
+
+async function show(req, res) {
+    try {
+        const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id }).sort({ 'skills.level': -1 });
+        console.log('pp: ', playerProfiles)
+        
+        res.render('skills/show', {
+            title: 'Skill Details',
+            playerProfiles,
+        });
+    } catch (err) {
+        console.error(err);
+        res.redirect('/player-profiles');
+    }
+}
 // req.body is { skillId: '660ce95f4743d60b89fbd769', level: '10' }
 // req.body.level is just the level
+
+
+
+// <!-- <div class="skills-header">Skills:
+//     <ul>
+//         <% playerProfiles.forEach(profile => { %>
+//             <% profile.skills.forEach(skill => { %>
+//                 <% if (skill.type.toString() === req.params.id.toString()) { %>
+//                     <li>
+//                         <%= profile.gamertag %> <small><%= skill.level %></small>   
+//                     </li>
+//                 <% } %>
+//             <% }); %>
+//         <% }); %>
+//     </ul>
+// </div> -->
