@@ -37,7 +37,10 @@ async function show(req, res) {
     try {
         const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id }).sort({ 'skills.level': -1 });
         console.log('pp: ', playerProfiles)
-        
+        playerProfiles.forEach(profile => {
+            profile.skills = profile.skills.filter(skill => skill.type.toString() === req.params.id);
+        });
+
         res.render('skills/show', {
             title: 'Skill Details',
             playerProfiles,
