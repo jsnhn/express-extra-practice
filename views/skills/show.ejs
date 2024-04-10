@@ -2,13 +2,15 @@
 
 <h1>Skill Details</h1>
 
-<div><%= skill.name %>:
+<div class="skill-show-title"><%= skill.name %>:
     <ul>
         <% playerProfiles.forEach(profile => { %>
-            <li>
+            <li class="skill-index">
                 <%= profile.gamertag %> 
                 <% const playerSkill = profile.skills.find(playerSkill => playerSkill.type.equals(skill._id)) %>
-                <small><label>Level: </label><%= playerSkill.level %></small>   
+                <br>
+                <small>
+                    <label>Level: </label><%= playerSkill.level %></small>   
             </li>
         <% }); %>
     </ul>

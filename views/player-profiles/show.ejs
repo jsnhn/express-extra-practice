@@ -7,8 +7,10 @@
             <% playerProfiles.skills.forEach(skill => { %>
                 <li>
                     <a href="/skills/<%= skill.type.id %>">
-                    <%= skill.type.name %> <small><%= skill.level %></small>   
+                    <%= skill.type.name %>
+                    <br>
                     </a>
+                    <small><label> level: </label><%= skill.level %></small>   
                     <form action="/player-profiles/<%= skill._id %>?_method=DELETE" method="POST">
                         <button type="submit">Delete</button>
                     </form>

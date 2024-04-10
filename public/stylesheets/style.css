@@ -8,8 +8,13 @@ body {
   background-image: url('https://www.destructoid.com/wp-content/uploads/2020/12/589937-Halo-2.jpg?fit=1920%2C1080');
 }
 
+nav {
+  animation: fadeIn 5s;
+}
+
 a {
   color: white;
+  animation: fadeIn 5s;
 }
 
 footer {
@@ -92,6 +97,15 @@ label {
 
 button {
   animation: fadeIn 5s;
+}
+
+.skill-show-title {
+  animation: fadeIn 5s;
+  color: white;
+}
+
+.skill-index {
+  color: white;
 }
 
 @keyframes fadeIn {
