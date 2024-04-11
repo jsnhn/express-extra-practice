@@ -22,7 +22,7 @@ const data = require('./data');
             deletedSkills.find(deletedSkill => deletedSkill.type === skill.type);
             const newSkill = Skill.find({name: deletedSkills.name})
             skill.type = newSkill._id
-            playerProfile.save();
+           
 
             //TODO first use the skill.type to grab the correct skill object from deletedSkills
             // then grab the new skill whose name matches the deleted skill you just grabbed and store it in a variable
