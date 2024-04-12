@@ -52,12 +52,17 @@ function newPlayer(req, res) {
 
 async function create(req, res) {
     req.body.user = req.user._id
-    req.body.userName = req.user.name
-    req.body.userAvatar = req.user.avatar
+    console.log('log: ', req.user._id)
     
-    console.log('log: ', req.body)
-    const playerProfile = await PlayerProfile.create(req.body)
-
+    const existingProfile = await PlayerProfile.findOne({user: req.user._id})
+    
+    if (existingProfile) {
+        return res.redirect('/player-profiles')
+    } else {
+        const playerProfile = await PlayerProfile.create(req.body)
+        res.redirect(`/player-profiles/${playerProfile._id}`)
+    }
+    
     try {
         await playerProfile.save();
     } catch(err) {
@@ -67,7 +72,6 @@ async function create(req, res) {
             errorMsg: err.message
         })
     }
-    res.redirect(`/player-profiles/${playerProfile._id}`)
 }
 
 
