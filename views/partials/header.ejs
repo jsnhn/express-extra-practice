@@ -10,12 +10,12 @@
 
 <body>
   <nav>
-    <a href="/">Home</a>
-     | 
-    <a href="/player-profiles">CC Players</a>
+    <a href="/" class="home-nav"><img src="https://cdn2.steamgriddb.com/icon_thumb/3cba81c5c6cac4ce77157631fc2dc277.png"></a> 
+    <a href="/player-profiles" class="player-nav">CC Players</a>
+    |
     <% if (user) { %>
-      <a href="/logout">LOG OUT</a>
+      <a href="/logout">Log Out</a>
       <% } else { %>
-        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+        <a href="/auth/google" class="login">Log In&nbsp;<img src="https://cdn4.iconfinder.com/data/icons/games-md-outline/24/43_-_Halo_ODST_fun_play_game-512.png"></a>
     <% } %>
   </nav>

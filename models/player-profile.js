@@ -30,6 +30,11 @@ const playerProfileSchema = new Schema({
         min: 21,
         default: 33
     },
+    user :{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     skills: [playerSkillSchema]
 }, {
    timestamps: true 
