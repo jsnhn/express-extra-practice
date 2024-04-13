@@ -52,13 +52,14 @@ function newPlayer(req, res) {
 
 async function create(req, res) {
     req.body.user = req.user._id
-    console.log('log: ', req.user._id)
+    console.log('log: ', req.body)
     
     const existingProfile = await PlayerProfile.findOne({user: req.user._id})
     
     if (existingProfile) {
         return res.redirect('/player-profiles')
     } else {
+
         const playerProfile = await PlayerProfile.create(req.body)
         res.redirect(`/player-profiles/${playerProfile._id}`)
     }
