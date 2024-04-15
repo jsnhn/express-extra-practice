@@ -15,7 +15,7 @@ async function addToSkill(req, res) {
             req.body.level = parseInt(req.body.level)
             playerProfile.skills.push(req.body);
             await playerProfile.save()
-            console.log('this is the req.body: ', playerProfile)
+            // console.log('this is the PP: ', playerProfile)
         }
     } catch(err) {
         console.log(err)
@@ -25,14 +25,16 @@ async function addToSkill(req, res) {
 
 async function deleteSkill(req, res) {
     try {
-        // console.log('Skill ID:', req.params.id);
+        console.log('Skill ID:', req.params.id);
         const playerProfile = await PlayerProfile.findOne({ 'skills._id': req.params.id });
         // console.log('pp: ', playerProfile)
-        playerProfile.skills = playerProfile.skills.filter(skill => skill._id.toString() !== req.params.id);
-        // filter iterates over each element and returns a new array containing only true elements
-        //req.params.id is usually a string. seeing if skill_.id matches with the req.params.id (id is parameeter in the URL)
-        await playerProfile.save();
-        res.redirect(`/player-profiles/${playerProfile._id}`);
+        if (playerProfile.user.equals(req.user._id)){ 
+            playerProfile.skills = playerProfile.skills.filter(skill => skill._id.toString() !== req.params.id);
+            // filter iterates over each element and returns a new array containing only true elements
+            //req.params.id is usually a string. seeing if skill_.id matches with the req.params.id (id is parameeter in the URL)
+            await playerProfile.save();
+            res.redirect(`/player-profiles/${playerProfile._id}`);
+        }
     } catch (err) {
         console.error(err);
         res.redirect('/player-profiles');
