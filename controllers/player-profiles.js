@@ -16,6 +16,7 @@ module.exports = {
 async function index(req, res) {
     try {
         const playerProfiles = await PlayerProfile.find({});
+        let existingProfile;
         console.log('log: ', req.user)
         if (req.user) {
             existingProfile = await PlayerProfile.findOne({ user: req.user._id });

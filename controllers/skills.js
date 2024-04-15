@@ -10,9 +10,13 @@ module.exports = {
 async function addToSkill(req, res) {
     try {
         const playerProfile = await PlayerProfile.findById(req.params.id);
-        req.body.level = parseInt(req.body.level)
-        playerProfile.skills.push(req.body);
-        await playerProfile.save()
+        
+        if (playerProfile.user.equals(req.user._id)) {
+            req.body.level = parseInt(req.body.level)
+            playerProfile.skills.push(req.body);
+            await playerProfile.save()
+            console.log('this is the req.body: ', playerProfile)
+        }
     } catch(err) {
         console.log(err)
     }
