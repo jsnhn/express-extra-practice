@@ -11,7 +11,7 @@
                     <br>
                     </a>
                     <small><label> level: </label><%= skill.level %></small>   
-                    <% if (user) { %>
+                    <% if (user && playerProfiles.user.equals(user._id)) { %>
                     <form action="/player-profiles/<%= skill._id %>?_method=DELETE" method="POST">
                         <button type="submit">Delete</button>
                     </form>
@@ -20,7 +20,7 @@
             <% }); %>
         </ul>
     </div>
-    <% if (user) { %>
+    <% if (user && playerProfiles.user.equals(user._id)) { %>
     <form class="skill-form" action="/player-profiles/<%= playerProfiles._id %>/skills" method="POST">
         <label>Skill: 
             <select name="type">
