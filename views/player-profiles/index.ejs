@@ -10,7 +10,7 @@
         </li>
       <% }); %>
     </ul>
-    <% if (!user?._id && user) { %>
-    <a href="/player-profiles/new">Add a new player</a>
-    <% } %>
+    <% if (user && !existingProfile) { %>
+      <a href="/player-profiles/new">Add a new player</a>
+      <% } %>
     <%- include('../partials/footer') %>

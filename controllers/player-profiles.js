@@ -16,12 +16,18 @@ module.exports = {
 async function index(req, res) {
     try {
         const playerProfiles = await PlayerProfile.find({});
+        console.log('log: ', req.user)
+        if (req.user) {
+            existingProfile = await PlayerProfile.findOne({ user: req.user._id });
+        }
+        
         res.render('player-profiles/index', {
             title: 'All Players',
             playerProfiles,
+            existingProfile
         });
     } catch(err) {
-        console.log(err)
+        console.log(err);
         res.send(err.message)
     }
 }
@@ -52,8 +58,9 @@ function newPlayer(req, res) {
 
 async function create(req, res) {
     req.body.user = req.user._id
-    console.log('log: ', req.body)
+    console.log('log: ', req.user._id)
     
+    try {
     const existingProfile = await PlayerProfile.findOne({user: req.user._id})
     
     if (existingProfile) {
@@ -64,8 +71,7 @@ async function create(req, res) {
         res.redirect(`/player-profiles/${playerProfile._id}`)
     }
     
-    try {
-        await playerProfile.save();
+        
     } catch(err) {
         console.log(err)
         res.render('player-profiles/new', {
