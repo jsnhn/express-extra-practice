@@ -13,6 +13,17 @@
                     <label>Level: </label><%= playerSkill.level %></small>   
             </li>
         <% }); %>
+       
+            <form class="sort-form" action='/skills/<%= skill._id %>' method="GET">
+                <label>Sort By: 
+                    <select name="sort">
+                        <option value="level">Ascending Level</option>
+                        <option value="-level">Descending Level</option>
+                        <option value="gamertag">Alphabetical Gamertag</option>
+                    </select>
+                </label>
+                <button type="submit">Sort</button>
+            </form>
     </ul>
 </div>
 

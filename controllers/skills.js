@@ -42,13 +42,26 @@ async function deleteSkill(req, res) {
 }
 
 async function show(req, res) {
+    console.log('query:', req.query);
     try {
-        const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id }).sort({ 'skills.level': -1 });
-        console.log('pp: ', playerProfiles)
+        const skill = await Skill.findById(req.params.id);
+        const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id });
 
-        const skill = await Skill.findById(req.params.id)
-       
-
+        if (req.query.sort === 'level') {
+            playerProfiles.sort((a, b) => {
+                const skillA = a.skills.find(skill => skill.type.equals(req.params.id));
+                const skillB = b.skills.find(skill => skill.type.equals(req.params.id));
+                return skillA.level - skillB.level;
+            });
+        } else if (req.query.sort === '-level') {
+            playerProfiles.sort((a, b) => {
+                const skillA = a.skills.find(skill => skill.type.equals(req.params.id));
+                const skillB = b.skills.find(skill => skill.type.equals(req.params.id));
+                return skillB.level - skillA.level;
+            });
+        } else if (req.query.sort === 'gamertag') {
+            playerProfiles.sort((a, b) => a.gamertag.localeCompare(b.gamertag)); //if the result is negative, a comes before b; if positive, b comes before a;
+        }
         res.render('skills/show', {
             title: 'Skill Details',
             playerProfiles,

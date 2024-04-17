@@ -15,6 +15,7 @@ var playerProfilesRouter = require('./routes/player-profiles');
 // const playerSkillsRouter = require('./routes/playerSkills');
 const skillsRouter = require('./routes/skills')
 const methodOverride = require('method-override')
+const getExistingProfile = require('./config/getExistingProfile')
 
 
 
@@ -41,15 +42,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(getExistingProfile);
+
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
 
-app.use(function(req, res, next){
-  res.locals.time = new Date().toLocaleDateString();
-  next()
-});
 
 app.use('/', indexRouter);
 app.use('/player-profiles', playerProfilesRouter);

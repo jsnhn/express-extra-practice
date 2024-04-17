@@ -6,6 +6,6 @@ exports.skills = [
         name: 'Shooting Accuracy', sortOrder: 20
     },
     {
-        name: 'Love Factor', sortOrder:20
+        name: 'Love Factor', sortOrder:30
     }
 ];

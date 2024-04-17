@@ -16,16 +16,11 @@ module.exports = {
 async function index(req, res) {
     try {
         const playerProfiles = await PlayerProfile.find({});
-        let existingProfile;
-        console.log('log: ', req.user)
-        if (req.user) {
-            existingProfile = await PlayerProfile.findOne({ user: req.user._id });
-        }
-        
+       
         res.render('player-profiles/index', {
             title: 'All Players',
             playerProfiles,
-            existingProfile
+            existingProfile: req.existingProfile
         });
     } catch(err) {
         console.log(err);
@@ -53,27 +48,22 @@ async function show(req, res) {
 }
 
 function newPlayer(req, res) {
-    res.render('player-profiles/new', {
-        title: 'New Player'
-    });
+    if (req.existingProfile) {
+        res.redirect('/player-profiles')
+    } else {
+        res.render('player-profiles/new', {
+            title: 'New Player'
+        });  
+    }
 };
 
 async function create(req, res) {
-    req.body.user = req.user._id
-    console.log('log: ', req.user._id)
-    
-    try {
-    const existingProfile = await PlayerProfile.findOne({user: req.user._id})
-    
-    if (existingProfile) {
-        return res.redirect('/player-profiles')
-    } else {
+    if (req.existingProfile) return res.redirect('/player-profiles')
 
+    req.body.user = req.user._id
+    try {
         const playerProfile = await PlayerProfile.create(req.body)
         res.redirect(`/player-profiles/${playerProfile._id}`)
-    }
-    
-        
     } catch(err) {
         console.log(err)
         res.render('player-profiles/new', {
