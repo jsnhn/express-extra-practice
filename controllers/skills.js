@@ -47,10 +47,20 @@ async function show(req, res) {
         const skill = await Skill.findById(req.params.id);
         const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id });
 
-        const chartData = {
-            labels: playerProfiles.map(profile => profile.gamertag)
-        }
+        const chartData = [];
 
+        // Iterate over each player profile to extract data for the chart
+        playerProfiles.forEach(profile => {
+            const profileData = {
+                name: profile.gamertag, // Store the profile's gamertag
+                skillLevel: profile.skills.find(skill => skill.type.equals(req.params.id)).level // Extract the level for the specific skill
+            };
+            chartData.push(profileData); // Push the profile data to the chartData array
+        });
+
+        console.log('chart: ', chartData);
+
+        
         if (req.query.sort === 'level') {
             playerProfiles.sort((a, b) => {
                 const skillA = a.skills.find(skill => skill.type.equals(req.params.id));
@@ -64,8 +74,9 @@ async function show(req, res) {
                 return skillB.level - skillA.level;
             });
         } else if (req.query.sort === 'gamertag') {
-            playerProfiles.sort((a, b) => a.gamertag.localeCompare(b.gamertag)); //if the result is negative, a comes before b; if positive, b comes before a;
+            playerProfiles.sort((a, b) => a.gamertag.localeCompare(b.gamertag));
         }
+
         res.render('skills/show', {
             title: 'Skill Details',
             playerProfiles,

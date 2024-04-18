@@ -33,15 +33,16 @@
       
       <script>
         const ctx = document.getElementById('myChart');
-        const labels = JSON.parse(`<%- JSON.stringify(chartData.labels) %>`);
+        const gamertags = JSON.parse('<%- JSON.stringify(chartData.map(data => data.name)) %>');
+        const levels = JSON.parse('<%- JSON.stringify(chartData.map(data => data.skillLevel)) %>');
       
         new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: labels,
+            labels: gamertags,
             datasets: [{
               label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              data: levels,
               borderWidth: 1
             }]
           },
