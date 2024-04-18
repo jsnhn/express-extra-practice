@@ -47,6 +47,10 @@ async function show(req, res) {
         const skill = await Skill.findById(req.params.id);
         const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id });
 
+        const chartData = {
+            labels: playerProfiles.map(profile => profile.gamertag)
+        }
+
         if (req.query.sort === 'level') {
             playerProfiles.sort((a, b) => {
                 const skillA = a.skills.find(skill => skill.type.equals(req.params.id));
@@ -66,6 +70,7 @@ async function show(req, res) {
             title: 'Skill Details',
             playerProfiles,
             skill,
+            chartData,
         });
     } catch (err) {
         console.error(err);
