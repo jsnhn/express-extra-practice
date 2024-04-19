@@ -47,6 +47,7 @@ async function show(req, res) {
         const skill = await Skill.findById(req.params.id);
         const playerProfiles = await PlayerProfile.find({ 'skills.type': req.params.id });
 
+        // Initialize an empty array to hold the chart data
         const chartData = [];
 
         // Iterate over each player profile to extract data for the chart

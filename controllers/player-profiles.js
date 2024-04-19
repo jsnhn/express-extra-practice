@@ -35,11 +35,20 @@ async function show(req, res) {
         const skills = await Skill.find({ _id: { $nin: playerProfiles.skills.map(skill => skill.type._id) } }).sort('sortOrder');
         // getting just the type values
         // console.log('what is this: ', skills);
+         // Initialize an empty array to hold the chart data
+    
+
+         // Iterate over each player profile to extract data for the chart
+         const chartData = {
+            skillNames: playerProfiles.skills.map(skill => skill.type.name),
+            skillLevels: playerProfiles.skills.map(skill => skill.level)
+        };
        
         res.render('player-profiles/show', {
             title: 'Player Details',
             playerProfiles,
             skills,
+            chartData
         });
     } catch(err) {
         console.log(err)

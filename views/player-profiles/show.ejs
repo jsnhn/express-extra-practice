@@ -46,7 +46,43 @@
         <button type="submit">Add a Skill</button>
     </form>
     <% } %>
-<%- include('../partials/footer') %>
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        const ctx = document.getElementById('myChart');
+        const skillNames = JSON.parse('<%- JSON.stringify(chartData.skillNames) %>');
+        const skillLevels = JSON.parse('<%- JSON.stringify(chartData.skillLevels) %>');
+    
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: skillNames,
+                datasets: [{
+                    label: 'Skill Level',
+                    data: skillLevels,
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 
 
 

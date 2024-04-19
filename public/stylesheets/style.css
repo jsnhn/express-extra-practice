@@ -5,9 +5,10 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url('https://www.destructoid.com/wp-content/uploads/2020/12/589937-Halo-2.jpg?fit=1920%2C1080');
+  /* background-image: url('https://www.destructoid.com/wp-content/uploads/2020/12/589937-Halo-2.jpg?fit=1920%2C1080'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color: black;
 }
 
 nav {
