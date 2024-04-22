@@ -47,7 +47,7 @@
     </form>
     <% } %>
 
-    <div>
+    <div class="radar-chart">
         <canvas id="myChart"></canvas>
     </div>
     
@@ -75,14 +75,16 @@
                 }]
             },
             options: {
+                
                 scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                    r: {
+                        suggestedMin: 0,
+                        suggestedMax: 10
             }
-        });
-    </script>
+        }
+    }
+});
+     </script>
 
 
 

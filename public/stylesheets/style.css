@@ -8,7 +8,7 @@ body {
   /* background-image: url('https://www.destructoid.com/wp-content/uploads/2020/12/589937-Halo-2.jpg?fit=1920%2C1080'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: black;
+  background-color: grey;
 }
 
 nav {
@@ -132,6 +132,17 @@ button {
 .login img {
   margin-bottom: -0.3%;
   height: 22px;
+}
+
+.radar-chart {
+  position: relative;
+  height: 119vh;
+  width: 119vh;
+}
+
+#myChart {
+  border: solid 1px;
+ 
 }
 
 
