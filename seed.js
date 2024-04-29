@@ -5,7 +5,7 @@ const Skill = require('./models/skill');
 const PlayerProfile = require('./models/player-profile')
 
 const data = require('./data');
-const playerProfile = require('./models/player-profile');
+
 
 (async function() {
     const deletedSkills = await Skill.find({})
@@ -18,21 +18,31 @@ const playerProfile = require('./models/player-profile');
     // console.log('deleted skills: ', deletedSkills)
     console.log('new skills', newSkills)
 
-    newSkills.forEach(skill => {
-        const id = skill._id; 
-        // console.log(id); 
-    });
 
-    const playerProfiles = await PlayerProfile.find({})
+    const playerProfiles = await PlayerProfile.find({});
+
 
     playerProfiles.forEach(playerProfile => {
-        playerProfile.skills.forEach(skill => {
-            const skillType = skill.type; // Accessing the type property of each skill
-        newSkills.forEach(skill  => {
-            const newSkillId = skill._id
-            newSkillId = skillType
-        })
-        })
+        playerProfile.skills.map(playerSkill => {
+            const playerSkills = playerSkill.type
+            console.log('Skill Type:', playerSkills);
+            
+            deletedSkills.map(deletedSkill => {
+                const deletedSkillName = deletedSkill.name;
+                console.log('Deleted Skill:', deletedSkillName);
+                
+                const matchingNewSkill = newSkills.find(newSkill => newSkill.name === deletedSkillName);
+                console.log('Matching New Skill:', matchingNewSkill);
+                
+                if (matchingNewSkill) {
+                    
+                    playerSkill.type = matchingNewSkill._id;
+                    console.log('Skill Type after:', playerSkill.type)
+                    
+                }
+            });
+        });
+        
     });
 
     // const playerProfiles = await PlayerProfile.find({});
