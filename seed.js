@@ -11,38 +11,31 @@ const data = require('./data');
     const deletedSkills = await Skill.find({})
     console.log('deletedSkills: ', deletedSkills)
     
-    const result = await Skill.deleteMany({})
-    // console.log('results:', result)
+    await Skill.deleteMany({})
+    
 
     const newSkills = await Skill.create(data.skills)
-    // console.log('deleted skills: ', deletedSkills)
     console.log('new skills', newSkills)
 
 
     const playerProfiles = await PlayerProfile.find({});
 
-
-    playerProfiles.forEach(playerProfile => {
-        playerProfile.skills.map(playerSkill => {
-            const playerSkills = playerSkill.type
-            console.log('Skill Type:', playerSkills);
+    playerProfiles.forEach(async playerProfile => {
+        playerProfile.skills.forEach(playerSkill => {
+            const oldSkillId = playerSkill.type
+            console.log('old skill Id:', oldSkillId);
             
-            deletedSkills.map(deletedSkill => {
-                const deletedSkillName = deletedSkill.name;
-                console.log('Deleted Skill:', deletedSkillName);
-                
-                const matchingNewSkill = newSkills.find(newSkill => newSkill.name === deletedSkillName);
-                console.log('Matching New Skill:', matchingNewSkill);
-                
-                if (matchingNewSkill) {
-                    
-                    playerSkill.type = matchingNewSkill._id;
-                    console.log('Skill Type after:', playerSkill.type)
-                    
-                }
-            });
+            const deletedSkill = deletedSkills.find(skill => skill._id.equals(oldSkillId))
+            console.log('deleted skill: ', deletedSkill);
+            const matchingNewSkill = newSkills.find(newSkill => newSkill.name === deletedSkill.name);
+            console.log('Matching New Skill:', matchingNewSkill);
+
+            playerSkill.type = matchingNewSkill._id
+            console.log('updated player skill: ', playerSkill)
         });
-        
+        console.log('player profile: ', playerProfile)
+        const result = await playerProfile.save()
+        console.log('result: ', result)
     });
 
     // const playerProfiles = await PlayerProfile.find({});

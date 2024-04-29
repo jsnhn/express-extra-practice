@@ -32,7 +32,7 @@ async function show(req, res) {
         const playerProfiles = await PlayerProfile.findById(req.params.id).populate('skills.type');
         console.log('pp', playerProfiles)
         // console.log('player profile', playerProfiles.skills.map(skill => skill.type._id))
-        const skills = await Skill.find({ _id: { $nin: playerProfiles.skills.map(skill => console.log('skill', skill) || skill.type._id) } }).sort('sortOrder');
+        const skills = await Skill.find({ _id: { $nin: playerProfiles.skills.map(skill => skill.type._id)}}).sort('sortOrder');
         // getting just the type values
         // console.log('what is this: ', skills);
          // Initialize an empty array to hold the chart data
